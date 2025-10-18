@@ -50,8 +50,8 @@ model.compile(
 history = model.fit(
     x_train,
     y_train,
-    epochs=5,
-    batch_size=128 ,
+    epochs=EPOCHS,
+    batch_size=BATCH_SIZE ,
     validation_split=0.1
 )
 
