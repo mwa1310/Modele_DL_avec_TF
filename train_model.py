@@ -12,7 +12,7 @@ DROPOUT_RATE = 0.2
 
 # Lancement de la session de suivi MLflow
 with mlflow.start_run():
-# Enregistrement des p a r a m t r e s
+# Enregistrement des paramètres
     mlflow.log_param("epochs ", EPOCHS)
     mlflow.log_param("batch_size ", BATCH_SIZE)
     mlflow.log_param("dropout_rate ", DROPOUT_RATE)
