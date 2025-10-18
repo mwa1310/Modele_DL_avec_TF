@@ -3,7 +3,7 @@ import tensorflow as tf
 import keras
 import numpy as np
 
-app = Flask(name)
+app = Flask(__name__)
 
 # Chargement du modèle Keras
 model = keras.models.load_model('mnist_model.h5')
@@ -28,5 +28,5 @@ def predict ():
         'probabilities':prediction.tolist()
     })
 
-if name == 'main':
+if __name__ == 'main':
     app.run(host='0.0.0.0', port=5000)
