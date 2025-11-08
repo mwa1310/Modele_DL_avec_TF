@@ -1,5 +1,5 @@
 import mlflow
-import mlflow.tenforflow
+#import mlflow.tenforflow
 import tensorflow as tf
 import keras
 import numpy as np
@@ -26,7 +26,7 @@ with mlflow.start_run():
 
 # Normalisation des données
 x_train = x_train.astype("float32") / 255.0
-x_test =x_test.astype("float32") / 255.0
+x_test =x_test.astype("float32") / 255.0 # Onramène les données dans l'intervale [0, 1]
 
 # Redimensionnement des images pour les réseaux fully-connected
 x_train = x_train.reshape(60000, 784)
@@ -34,17 +34,17 @@ x_test = x_test.reshape(10000, 784)
 
 # Construction du modèle
 model = keras.Sequential([
-    keras.layers.Dense(512, activation = 'relu', input_shape =(784,)),
-    keras.layers.Dropout(0.2),
-    keras.layers.Dense(10, activation ='softmax')
+    keras.layers.Dense(512, activation = 'relu', input_shape =(784,)), # ici tous les neurones de la couche sont connectés à la couche précédente
+    keras.layers.Dropout(0.2), # couche sans paramètre, qui désactive un certain pourcentage d'activation
+    keras.layers.Dense(10, activation ='softmax') # la fonction d'acti ici definit la loss à utiliser
 ])
 
 # Compilation du modèle
-model.compile(
+model.compile( # on definit ici les props de l'optimiseur
     optimizer='adam',
-    loss='sparse_categorical_crossentropy',
+    loss='sparse_categorical_crossentropy', # ne fonctionne que pour le softmax
     metrics =['accuracy']
-)
+) #Avec tf on ne peut pas faire le gridsearch qui consiste à entrer des valeurs des valeurs d'accuracy et choisir à la fin le meilleur-modèle mais mlflow est une bonne alternative pour la tracabilité des resultats pour choisir le meilleur modèle"""
 
 # Entrainement du modèle
 history = model.fit(
