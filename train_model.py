@@ -41,6 +41,7 @@ for opt_name, optimizer in optimizers.items():
         # Construction du modèle
         model = keras.Sequential([
             keras.layers.Dense(512, activation = 'relu', input_shape =(784,)), # ici tous les neurones de la couche sont connectés à la couche précédente
+            keras.layers.BatchNormalization(),
             keras.layers.Dropout(DROPOUT_RATE), # couche sans paramètre, qui désactive un certain pourcentage d'activation
             keras.layers.Dense(10, activation ='softmax') # la fonction d'acti ici definit la loss à utiliser
         ])
